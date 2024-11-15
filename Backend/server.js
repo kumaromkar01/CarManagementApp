@@ -8,7 +8,7 @@ import carroutes from './routes/car.routes.js';
 dotenv.config();
 const app = express();
 app.use(cors({
-    origin: ['http://localhost:5173','https://username.github.io'] ,// Replace with your frontend URL
+    origin: ['http://localhost:5173','https://kumaromkar01.github.io'] ,// Replace with your frontend URL
     credentials: true,               // Enable credentials (cookies)
 }));
 app.use(cookieParser());
