@@ -13,9 +13,13 @@ export const signup = async(req,res)=>{
             password : hashedPassword,
         })
         const token = jwt.sign({id:createdUser._id,username}, process.env.SECRET, { expiresIn: '1d' });
-        res.cookie('token', token,{
-            expires: new Date(Date.now() + 86400000),
+        res.cookie('token', token, {
+            httpOnly: true,        // Ensures the cookie is only accessible via HTTP(S)
+            secure: true,          // Ensures the cookie is sent only over HTTPS
+            sameSite: 'None',      // Required for cross-origin requests
+            expires: new Date(Date.now() + 86400000), // 1 day expiration
         });
+        
         res.status(200).send({createdUser});
         // res.redirect('/car/list')
     } catch (error) {
@@ -31,9 +35,13 @@ export const login = async(req,res)=>{
         const match = await bcrypt.compare(password, user.password);
         if(match){
             const token = jwt.sign({id:user._id,username}, process.env.SECRET, { expiresIn: '1d' });
-            res.cookie('token', token,{
-                expires: new Date(Date.now() + 86400000),
+            res.cookie('token', token, {
+                httpOnly: true,        // Ensures the cookie is only accessible via HTTP(S)
+                secure: true,          // Ensures the cookie is sent only over HTTPS
+                sameSite: 'None',      // Required for cross-origin requests
+                expires: new Date(Date.now() + 86400000), // 1 day expiration
             });
+            
             res.status(200).json({ message: 'Logged in successfully' });
             // res.redirect('/car/list');
         }else{
