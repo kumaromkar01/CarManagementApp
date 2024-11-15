@@ -15,7 +15,7 @@ const Signup = () => {
     const password = passwordref.current.value;
     const data = { fullname, username, password };
     try {
-      const response = await axios.post('http://localhost:5000/user/signup', data, {
+      const response = await axios.post('https://carmanagementapp.onrender.com/user/signup', data, {
         headers: {
           'Content-Type': 'application/json', 
         },

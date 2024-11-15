@@ -21,10 +21,11 @@ const Update = () => {
         return;
       }
       try {
-        const response = await axios.get(`http://localhost:5000/cars/view/${id}`, {
+        const response = await axios.get(`https://carmanagementapp.onrender.com/cars/view/${id}`, {
           headers: {
             'Authorization': `Bearer ${token}`, // Send token in headers for auth
           },
+          withCredentials: true,
         });
         const { tittle, desc, images } = response.data;
         setTittle(tittle);
@@ -45,13 +46,14 @@ const Update = () => {
     }
     try {
       const response = await axios.post(
-        `http://localhost:5000/cars/update/${id}`,
+        `https://carmanagementapp.onrender.com/cars/update/${id}`,
         { tittle, desc, images },
         {
           headers: {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`, // Send token in headers for auth
           },
+          withCredentials: true,
         }
       );
       if (response.status === 200) {

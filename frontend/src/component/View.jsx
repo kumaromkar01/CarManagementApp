@@ -8,7 +8,7 @@ const CarView = () => {
   useEffect(() => {
     const fetchCarDetails = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/cars/view/${id}`);
+        const response = await axios.get(`https://carmanagementapp.onrender.com/cars/view/${id}`,{withCredentials: true,});
         setCar(response.data);
       } catch (err) {
         setError('Error fetching car details');

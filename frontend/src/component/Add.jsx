@@ -21,7 +21,7 @@ const Add = () => {
     try {
       // Sending data to backend
       const response = await axios.post(
-        'http://localhost:5000/cars/create',
+        'https://carmanagementapp.onrender.com/cars/create',
         { tittle, desc: description, images: imageLink },
         {
           headers: {

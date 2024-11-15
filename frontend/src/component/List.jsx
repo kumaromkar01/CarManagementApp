@@ -9,7 +9,7 @@ const List = () => {
     useEffect(() => {
         const fetchCars = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/cars/list', {
+                const response = await axios.get('https://carmanagementapp.onrender.com/cars/list', {
                     withCredentials: true,
                 });
                 setCars(response.data);
@@ -21,7 +21,7 @@ const List = () => {
     }, []);
     const handleDelete = async (carId) => {
         try {
-            await axios.get(`http://localhost:5000/cars/delete/${carId}`, {
+            await axios.get(`https://carmanagementapp.onrender.com/cars/delete/${carId}`, {
                 withCredentials: true,
             });
             setCars(cars.filter((car) => car._id !== carId)); // Update the list after deletion
@@ -31,7 +31,7 @@ const List = () => {
     };
     const handleLogout = async () => {
         try {
-            await axios.get('http://localhost:5000/user/logout', { withCredentials: true });
+            await axios.get('https://carmanagementapp.onrender.com/user/logout', { withCredentials: true });
             navigate('/login'); // Redirect to login page after logging out
         } catch (err) {
             setError('Logout failed. Please try again.');
